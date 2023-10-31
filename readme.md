@@ -1,3 +1,6 @@
+## Notification Library, Sends Notifications to Clients Using SignalR
+### Installation
+Find the package on NuGet: https://www.nuget.org/packages/i2vNotificationLibrary
 ## This library requires a SignalR hub service to use `IHubContext`. Here's how to set it up:
 ### Create a NotificationHub Extending Hub
 ```C#
