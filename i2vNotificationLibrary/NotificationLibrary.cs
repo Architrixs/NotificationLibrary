@@ -34,17 +34,13 @@ public class NotificationLibrary
         if (string.IsNullOrWhiteSpace(entityName)) throw new ArgumentException(nameof(entityName));
         _entityTypeMapping.Add(typeof(T), entityName);
     }
-
-    /// <summary>
-    ///  Send notification to a specific user
-    /// </summary>
-    /// <param name="methodName"></param>
-    /// <param name="userId"></param>
-    /// <param name="operationType"></param>
-    /// <param name="resource"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    
     public async Task SendNotificationToUser<T>(string methodName, string userId, string operationType, T resource, string message = "")
+    {
+        await SendNotificationToUser(methodName, userId, operationType, new List<T> { resource }, message);
+    }
+    
+    public async Task SendNotificationToUser<T>(string methodName, string userId, string operationType, List<T> resource, string message = "")
     {
         try
         {
@@ -71,6 +67,10 @@ public class NotificationLibrary
     }
 
     public async Task SendNotificationToGroup<T>(string methodName, string groupName, string operationType, T resource, string message = "")
+    {
+        await SendNotificationToGroup(methodName, groupName, operationType, new List<T> { resource }, message);
+    }
+    public async Task SendNotificationToGroup<T>(string methodName, string groupName, string operationType, List<T> resource, string message = "")
     {
         try
         {
@@ -99,6 +99,11 @@ public class NotificationLibrary
 
     public async Task SendNotificationToAll<T>(string methodName, string operationType, T resource, string message = "")
     {
+        await SendNotificationToAll(methodName, operationType, new List<T> { resource }, message);
+    }
+        
+    public async Task SendNotificationToAll<T>(string methodName, string operationType, List<T> resource, string message = "")
+    {
         try
         {
             if (string.IsNullOrEmpty(methodName)) throw new ArgumentException("Method name is required", nameof(methodName));
@@ -124,6 +129,11 @@ public class NotificationLibrary
 
     public async Task SendNotificationToAllExcept<T>(string methodName, string userId, string operationType, T resource, string message = "")
     {
+        await SendNotificationToAllExcept(methodName, userId, operationType, new List<T> { resource }, message);
+    }
+    
+    public async Task SendNotificationToAllExcept<T>(string methodName, string userId, string operationType, List<T> resource, string message = "")
+    {
         try
         {
             if (string.IsNullOrEmpty(methodName)) throw new ArgumentNullException(nameof(methodName));
@@ -146,9 +156,14 @@ public class NotificationLibrary
             Console.WriteLine($"Error sending notification to all except user: {userId} , error: {ex.Message}");
         }
     }
+    
+    public async Task SendNotificationToConnections<T>(string methodName, List<string> connectionIds, string operationType, T resource, string message = "")
+    {
+        await SendNotificationToConnections(methodName, connectionIds, operationType, new List<T> { resource }, message);
+    }
 
     // to multiple connections
-    public async Task SendNotificationToConnections<T>(string methodName, List<string> connectionIds, string operationType, T resource, string message = "")
+    public async Task SendNotificationToConnections<T>(string methodName, List<string> connectionIds, string operationType, List<T> resource, string message = "")
     {
         try
         {

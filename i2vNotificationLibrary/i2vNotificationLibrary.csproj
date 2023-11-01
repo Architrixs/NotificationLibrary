@@ -7,7 +7,7 @@
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <PackageId>i2vNotificationLibrary</PackageId>
         <Title>CRUD notification signalR Library</Title>
-        <Version>0.0.1-beta</Version>
+        <Version>0.0.2-beta</Version>
         <Authors>Architrixs</Authors>
         <Product> </Product>
         <Description>CRUD notification sending to clients using signalR</Description>

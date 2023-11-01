@@ -29,7 +29,7 @@ namespace WebApplication.Controllers
                 key = "asdasd",
                 value = "asfaf"
             };
-            _notificationLibrary.SendNotificationToAll("CrudNotification","get", src);
+            //_notificationLibrary.SendNotificationToAll("CrudNotification","get", src);
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
